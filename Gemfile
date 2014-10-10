@@ -16,7 +16,11 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'bullet'
+  gem 'meta_request'
 end
+
+gem 'haml'
+gem 'haml-rails'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
