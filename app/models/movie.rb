@@ -27,17 +27,17 @@ class Movie < ActiveRecord::Base
   # Methods
   private
 
-  # Remove whitespace from input
-  def strip_empty_space
-    self.title = title.strip unless title.blank?
-    self.description = description.strip unless description.blank?
-  end
-
-  # Description should be 2 or more words
-  def check_description_word_count
-    unless description.blank?
-      errors.add(:description, "Description should be at least 2 words long.") if description.split(" ").count < 2
+    # Remove whitespace from input
+    def strip_empty_space
+      self.title = title.strip unless title.blank?
+      self.description = description.strip unless description.blank?
     end
-  end
+
+    # Description should be 2 or more words
+    def check_description_word_count
+      unless description.blank?
+        errors.add(:description, "Description should be at least 2 words long.") if description.split(" ").count < 2
+      end
+    end
 
 end
