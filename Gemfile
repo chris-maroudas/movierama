@@ -24,6 +24,11 @@ gem 'haml'
 gem 'haml-rails'
 gem 'simple_form'
 
+group :test do
+  gem 'rspec'
+  gem 'rspec-rails'
+end
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
