@@ -17,10 +17,12 @@ group :development do
   gem 'binding_of_caller'
   gem 'bullet'
   gem 'meta_request'
+  gem 'erb2haml'
 end
 
 gem 'haml'
 gem 'haml-rails'
+gem 'simple_form'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
