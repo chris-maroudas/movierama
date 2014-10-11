@@ -1,0 +1,7 @@
+.movie-wrapper
+  %h2
+    = movie.title
+  %p
+    = movie.description
+  = link_to "More details", movie
+  = link_to "Destroy movie", movie, method: :delete

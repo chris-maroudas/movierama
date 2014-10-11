@@ -14,7 +14,7 @@ class Movie < ActiveRecord::Base
   # Validations
   validates :title,
             presence: true,
-            length: (1..255)
+            length: (2..255)
 
   validates :description,
             presence: true
