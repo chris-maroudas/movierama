@@ -1,0 +1,29 @@
+* {
+	box-sizing: border-box;
+	font-family: "Georgia", serif;
+}
+
+.main-content {
+	padding: 45px;
+	width: 800px;
+	margin: 0 auto;
+	background-color: #f0f0f0;
+}
+
+label {
+	display: block;
+	margin: 20px 0 5px;
+}
+
+input#movie_title {
+	width: 200px;
+}
+
+textarea#movie_description {
+	width: 300px;
+	height: 200px
+}
+
+.error {
+	color: red;
+}
