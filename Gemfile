@@ -29,6 +29,7 @@ gem 'bcrypt', '~> 3.1.7'
 group :test do
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'capybara'
 end
 
 # Use SCSS for stylesheets
