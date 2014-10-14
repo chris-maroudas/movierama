@@ -7,12 +7,14 @@
 #  description :text
 #  created_at  :datetime
 #  updated_at  :datetime
+#  user_id     :integer
 #
 
 class Movie < ActiveRecord::Base
 
   # Associations
   belongs_to :user
+  has_many :ratings
 
   # Validations
   validates :title,
@@ -22,6 +24,13 @@ class Movie < ActiveRecord::Base
   validates :description,
             presence: true
 
+  validates :user_id,
+            presence: true,
+            numericality: { only_integer: true }
+
+  validates_presence_of :user, message: "User doesn't exist!"
+
+  # Custom validations
   validate :check_description_word_count
 
   # Callbacks

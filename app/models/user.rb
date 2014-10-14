@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
 
   # Associations
   has_many :movies
+  has_many :ratings
 
   # Validations
   validates :name,
