@@ -5,3 +5,37 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+# Users creation
+
+2.times do
+  password = Faker::Internet.password(8)
+  data = {
+    name: "#{Faker::Name.first_name} #{Faker::Name.last_name}",
+    email: Faker::Internet.email,
+    password: password,
+    password_confirmation: password
+  }
+  User.create(data)
+end
+
+5.times do
+  data = {
+    title: Faker::Lorem.word,
+    description: Faker::Lorem.paragraph(2),
+    user: User.all.sample
+  }
+  Movie.create(data)
+end
+
+50.times do
+  choices = [true, false]
+  data = {
+    positive: choices.sample,
+    user: User.all.sample,
+    movie: Movie.all.sample
+  }
+  rating = Rating.new(data)
+  rating.save if rating.valid?
+end
