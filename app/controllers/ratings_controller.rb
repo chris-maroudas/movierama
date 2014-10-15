@@ -6,7 +6,7 @@ class RatingsController < ApplicationController
     if current_user
       @rating = current_user.ratings.new(rating_params)
       if @rating.save
-        redirect_to movies_url, notice: "Thank you for voting!"
+        redirect_to :back, notice: "Thank you for voting!"
       else
         redirect_to movies_url, notice: "There was an error!"
       end
@@ -17,7 +17,7 @@ class RatingsController < ApplicationController
     if current_user
       @rating = Rating.find(params[:id])
       if @rating.update_attributes(rating_params)
-        redirect_to movies_url, notice: "Thank you for voting!"
+        redirect_to :back, notice: "Thank you for voting!"
       else
         redirect_to movies_url, notice: "There was an error!"
       end
@@ -28,7 +28,7 @@ class RatingsController < ApplicationController
     if current_user
       @rating = Rating.find(params[:id])
       if @rating.destroy
-        redirect_to movies_url, notice: "Unvoted!"
+        redirect_to :back, notice: "Unvoted!"
       end
     end
   end
