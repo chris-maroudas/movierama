@@ -1,0 +1,7 @@
+%p
+  Sort by:
+  = link_to "Likes", params.merge(sort: true, by: "likes_count")
+  |
+  = link_to "Hates", params.merge(sort: true, by: "hates_count")
+  |
+  = link_to "Date", params.merge(sort: true, by: "created_at")

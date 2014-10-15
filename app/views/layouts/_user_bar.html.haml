@@ -1,0 +1,10 @@
+- if signed_in?
+  = link_to current_user.name.humanize, movies_user_path(current_user)
+  |
+  = link_to "Log out", signout_path, method: :delete
+  |
+  = link_to "New movie", new_movie_path
+- else
+  = link_to "Sign up", signup_path
+  |
+  = link_to "Sign in", signin_path

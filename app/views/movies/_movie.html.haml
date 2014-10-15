@@ -1,7 +1,25 @@
 .movie-wrapper
-  %h2
-    = movie.title
-  %p
+  %h3
+    = movie.title.titleize
+  %h4.author
+    Posted by
+    = link_to movie.user.name.humanize, movies_user_path(movie.user)
+    = "#{time_ago_in_words movie.created_at} ago."
+  %p.description
     = movie.description
-  = link_to "More details", movie
-  = link_to "Destroy movie", movie, method: :delete
+
+  - if signed_in?
+    = "Be the first to vote for this movie:" unless(movie.ratings_count > 0 || current_user.has_created?(movie))
+    %p.ratings
+      = current_user.has_liked?(movie) || current_user.has_created?(movie) ? rating_counts_pluralizer(movie, "like") : render(partial: 'ratings/form', locals: { movie: movie, value: "like" })
+    %p.ratings
+      = current_user.has_hated?(movie) || current_user.has_created?(movie) ? rating_counts_pluralizer(movie, "hate") : render(partial: 'ratings/form', locals: { movie: movie, value: "hate" })
+
+    - if current_user.has_rated?(movie)
+      = raw link_to_undo(current_user.get_rating_for(movie))
+
+  - else
+    %p.ratings
+      = rating_counts_pluralizer(movie, "like")
+    %p.ratings
+      = rating_counts_pluralizer(movie, "like")

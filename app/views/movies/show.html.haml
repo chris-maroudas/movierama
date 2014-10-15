@@ -1,6 +1,45 @@
 %h3
-  = @movie.title
+  = @movie.title.titleize
+%h4
+  Posted by
+  = @movie.user.name.humanize
+  = "#{time_ago_in_words @movie.created_at} ago."
+
 %p
   = @movie.description
+
+
+- if signed_in?
+
+  = "Be the first to vote for this movie:" if @movie.ratings_count == 0
+
+  - if @rating.persisted? && @rating.positive?
+    = "#{pluralize(@movie.likes_count, "like")}"
+  - else
+    = simple_form_for(@rating) do |f|
+      = f.input :positive, as: :hidden, input_html: { value: true }
+      = f.input :movie_id, as: :hidden
+      = f.submit "#{pluralize(@movie.likes_count, "like")}"
+
+  - if @rating.persisted? && @rating.negative?
+    = "#{pluralize(@movie.hates_count, "hate")}"
+  - else
+    = simple_form_for(@rating) do |f|
+      = f.input :positive, as: :hidden, input_html: { value: false }
+      = f.input :movie_id, as: :hidden
+      = f.submit "#{pluralize(@movie.hates_count, "hate")}"
+
+%hr
+
+  - if @rating.persisted?
+    - if @rating.positive
+      You like this movie
+      |
+      = link_to "Unlike!", @rating, method: :delete
+    - else
+      You hate this movie
+      |
+      = link_to "Unhate", @rating, method: :delete
+
 
 = link_to "Back", :back

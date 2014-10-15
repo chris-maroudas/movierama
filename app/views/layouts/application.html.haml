@@ -7,7 +7,10 @@
     = csrf_meta_tags
   %body
     .main-content
-      = notice
+      %h1
+        Movierama
+      = render 'layouts/user_bar'
+      = render 'layouts/flash'
 
       = yield
 
