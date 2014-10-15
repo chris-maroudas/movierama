@@ -45,11 +45,20 @@ class Movie < ActiveRecord::Base
   # Callbacks
   before_validation :strip_empty_space
   before_create :initialize_counters
+
+  before_update :update_likes_to_ratings_ratio, if: :counters_changed?,
+                unless: Proc.new { |movie| movie.unqualified_for_ratio? }
+
   # Methods
 
   # Whitelist columns the user can order
   def self.allowed_order_columns
-    %w(likes_count hates_count created_at)
+    %w(likes_count hates_count ratings_count likes_to_ratings_ratio created_at)
+  end
+
+  # Should have at list 10 ratings to get an objective ratio
+  def unqualified_for_ratio?
+    ratings_count < 10
   end
 
   private
@@ -64,6 +73,7 @@ class Movie < ActiveRecord::Base
       self.ratings_count = 0
       self.likes_count = 0
       self.hates_count = 0
+      self.likes_to_ratings_ratio = 0
     end
 
     # Description should be 2 or more words
@@ -71,6 +81,14 @@ class Movie < ActiveRecord::Base
       unless description.blank?
         errors.add(:description, "Description should be at least 2 words long.") if description.split(" ").count < 2
       end
+    end
+
+    def counters_changed?
+      likes_count_changed? || hates_count_changed?
+    end
+
+    def update_likes_to_ratings_ratio
+      self.likes_to_ratings_ratio = ((likes_count.to_f / ratings_count).round(2) * 100).to_i
     end
 
 end
