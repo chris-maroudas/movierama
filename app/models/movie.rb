@@ -2,15 +2,16 @@
 #
 # Table name: movies
 #
-#  id            :integer          not null, primary key
-#  title         :string(255)
-#  description   :text
-#  created_at    :datetime
-#  updated_at    :datetime
-#  user_id       :integer
-#  ratings_count :integer
-#  likes_count   :integer
-#  hates_count   :integer
+#  id                     :integer          not null, primary key
+#  title                  :string(255)
+#  description            :text
+#  created_at             :datetime
+#  updated_at             :datetime
+#  user_id                :integer
+#  ratings_count          :integer
+#  likes_count            :integer
+#  hates_count            :integer
+#  likes_to_ratings_ratio :integer
 #
 
 class Movie < ActiveRecord::Base
