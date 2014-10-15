@@ -57,9 +57,9 @@ class Movie < ActiveRecord::Base
     %w(likes_count hates_count ratings_count likes_to_ratings_ratio created_at)
   end
 
-  # Should have at list 10 ratings to get an objective ratio
+  # Should have at list 5 ratings to get an objective ratio
   def unqualified_for_ratio?
-    ratings_count < 10
+    ratings_count < 5
   end
 
   private
