@@ -9,7 +9,7 @@
 
 # Users creation
 
-2.times do
+12.times do
   password = Faker::Internet.password(8)
   data = {
     name: "#{Faker::Name.first_name} #{Faker::Name.last_name}",
@@ -29,7 +29,7 @@ end
   Movie.create(data)
 end
 
-50.times do
+100.times do
   choices = [true, false]
   data = {
     positive: choices.sample,
