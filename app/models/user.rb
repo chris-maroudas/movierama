@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   # Associations
   has_many :movies
   has_many :ratings
+  has_many :rated_movies, through: :ratings, source: :movie
 
   # Validations
   validates :name,
@@ -40,6 +41,44 @@ class User < ActiveRecord::Base
   before_create :create_remember_token
 
   # Methods
+
+  def has_rated?(movie)
+    movie.in? rated_movies
+  end
+
+  def has_created?(movie)
+    self == movie.user
+  end
+
+  def get_rating_for(movie)
+    ratings.where(user: self, movie: movie).first
+  end
+
+  def has_liked?(movie)
+    rating = get_rating_for(movie)
+    if !rating.nil? && rating.positive?
+      return true
+    end
+    false
+  end
+
+  def has_hated?(movie)
+    rating = get_rating_for(movie)
+    if !rating.nil? && rating.negative?
+      return true
+    end
+    false
+  end
+
+  # Returns liked or hated movies, depending on choice
+  def get_movies_by(choice)
+    scope = choice == "likes" ? "liked" : "hated"
+    movies = []
+    ratings.send(scope).each do |rating|
+      movies << rating.movie
+    end
+    movies
+  end
 
   def self.new_remember_token
     SecureRandom.urlsafe_base64
