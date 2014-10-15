@@ -5,3 +5,7 @@
   = link_to "Hates", params.merge(sort: true, by: "hates_count")
   |
   = link_to "Date", params.merge(sort: true, by: "created_at")
+  |
+  = link_to "Most voted", params.merge(sort: true, by: "ratings_count")
+  |
+  = link_to "Best Rated", params.merge(sort: true, by: "likes_to_ratings_ratio")
