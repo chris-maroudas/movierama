@@ -1,0 +1,4 @@
+= simple_form_for(current_user.get_rating_for(movie) || movie.ratings.new) do |f|
+  = f.input :positive, as: :hidden, input_html: { value: value == "like" }
+  = f.input :movie_id, as: :hidden, input_html: { value: movie.id }
+  = f.submit rating_counts_pluralizer(movie, value), id: 'rating-submit'

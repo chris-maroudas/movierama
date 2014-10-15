@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :users
+  resources :users do
+    get :movies, on: :member
+  end
   resources :sessions, only: [:new, :create, :destroy]
   resources :movies
+  resources :ratings, only: [:create, :update, :destroy]
   root 'movies#index'
   match '/signup', to: 'users#new', via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'
