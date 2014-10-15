@@ -7,7 +7,7 @@
 	padding: 45px;
 	width: 800px;
 	margin: 0 auto;
-	background-color: #f0f0f0;
+	background-color: #f4f4f4;
 }
 
 label {
@@ -15,7 +15,7 @@ label {
 	margin: 20px 0 5px;
 }
 
-input#movie_title {
+input {
 	width: 200px;
 }
 
@@ -26,4 +26,57 @@ textarea#movie_description {
 
 .error {
 	color: red;
+}
+
+.movie-wrapper {
+	padding: 40px 0 80px;
+	clear: both;
+	border-bottom: 1px solid #777;
+}
+
+input#create-account, input#signin-button {
+	margin-top: 30px;
+	display: block;
+}
+
+input#rating-submit {
+	margin: 0;
+	padding: 0;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	display: inline;
+	color: blue;
+	width: auto;
+	font-size: 14px;
+	text-align: left;
+	padding: 0;
+	text-decoration: underline;
+
+}
+
+.delete-wrapper {
+	float: right;
+	width: 250px;
+}
+
+p.ratings {
+	margin-bottom: 10px;
+	padding: 0;
+	font-size: 14px;
+	color: #444;
+	padding: 0;
+}
+
+p.description {
+	margin-bottom: 30px;
+}
+
+p.notice, p.error {
+	background: #bbb;
+}
+
+h4.author {
+	font-size: 13px;
+	font-weight: 400;
 }
