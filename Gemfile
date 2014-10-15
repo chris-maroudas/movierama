@@ -6,6 +6,11 @@ gem 'rails', '4.1.6'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
+gem 'haml'
+gem 'haml-rails'
+gem 'simple_form'
+gem 'bcrypt', '~> 3.1.7'
+
 group :development do
   gem 'web-console', github: 'rails/web-console'
   gem 'thin'
@@ -18,13 +23,8 @@ group :development do
   gem 'bullet'
   gem 'meta_request'
   gem 'erb2haml'
+  gem 'faker'
 end
-
-gem 'haml'
-gem 'haml-rails'
-gem 'simple_form'
-gem 'bcrypt', '~> 3.1.7'
-
 
 group :test do
   gem 'rspec'
