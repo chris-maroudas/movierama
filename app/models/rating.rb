@@ -45,8 +45,8 @@ class Rating < ActiveRecord::Base
   end
 
   # Callbacks
-  after_save :update_likes_or_hates_count_in_movies
-  after_destroy :update_likes_or_hates_count_in_movies
+  after_save :update_counters_in_movie
+  after_destroy :update_counters_in_movie
 
   # Methods
 
@@ -62,10 +62,9 @@ class Rating < ActiveRecord::Base
     end
 
     # Update appropriate counters when a record is changed
-    def update_likes_or_hates_count_in_movies
+    def update_counters_in_movie
       unless movie.blank?
-        movie.update_attribute(:likes_count, movie.ratings.liked.count)
-        movie.update_attribute(:hates_count, movie.ratings.hated.count)
+        movie.update(likes_count: movie.ratings.liked.count, hates_count: movie.ratings.hated.count)
       end
     end
 
