@@ -24,7 +24,8 @@ end
   data = {
     title: Faker::Lorem.word,
     description: Faker::Lorem.paragraph(2),
-    user: User.all.sample
+    user: User.all.sample,
+    published_at: rand(99.years).ago.to_date
   }
   Movie.create(data)
 end
