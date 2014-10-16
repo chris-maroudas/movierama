@@ -47,7 +47,7 @@ class MoviesController < ApplicationController
     end
 
     def movie_params
-      params.require(:movie).permit(:title, :description)
+      params.require(:movie).permit(:title, :description, :published_at)
     end
 
     def check_if_user_is_signed

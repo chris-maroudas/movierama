@@ -1,4 +1,5 @@
 = simple_form_for @movie do |f|
   = f.input :title
   = f.input :description
-  = f.submit "Post movie!"
+  = f.input :published_at, start_year: Date.parse("january 1 1900").year, end_year: Time.now.year, order: [:day, :month, :year]
+  = f.submit "Post movie!", class: "movie-submit"

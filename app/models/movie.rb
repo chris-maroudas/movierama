@@ -12,6 +12,7 @@
 #  likes_count            :integer
 #  hates_count            :integer
 #  likes_to_ratings_ratio :integer
+#  published_at           :datetime
 #
 
 class Movie < ActiveRecord::Base
@@ -28,6 +29,10 @@ class Movie < ActiveRecord::Base
 
   validates :description,
             presence: true
+
+  validates :published_at,
+            presence: true,
+            inclusion: { in: (Date.parse("january 1 1900")..Date.today) }
 
   validates :user_id,
             presence: true,
@@ -54,7 +59,7 @@ class Movie < ActiveRecord::Base
 
   # Whitelist columns the user can order
   def self.allowed_order_columns
-    %w(likes_count hates_count ratings_count likes_to_ratings_ratio created_at)
+    %w(likes_count hates_count ratings_count likes_to_ratings_ratio published_at created_at)
   end
 
   # Should have at list 5 ratings to get an objective ratio
