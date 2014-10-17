@@ -19,7 +19,7 @@ class Movie < ActiveRecord::Base
 
   # Associations
   belongs_to :user
-  has_many :ratings
+  has_many :ratings, dependent: :destroy
   has_many :critics, through: :ratings, source: :user
 
   # Validations

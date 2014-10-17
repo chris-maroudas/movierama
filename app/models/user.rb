@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
 
   # Associations
   has_many :movies
-  has_many :ratings
+  has_many :ratings, dependent: :destroy
   has_many :rated_movies, through: :ratings, source: :movie
 
   # Validations
